@@ -116,7 +116,7 @@ public class WriteExcelFile {
 
         //Create an array with the data in the same order in which you expect to be filled in excel file
 
-        String[] valueToWrite = {"Mr. E","Noida"};
+        String[] valueToWrite = {"Mr. E","Noida","firefox"};
 
         //Create an object of current class
 
@@ -124,7 +124,8 @@ public class WriteExcelFile {
 
         //Write the file using file name, sheet name and the data to be filled
 
-        objExcelFile.writeExcel(System.getProperty("user.dir")+"","UserLoginDetails.xlsx","ExcelGuru99Demo",valueToWrite);
+        objExcelFile.writeExcel(System.getProperty("user.dir")+"","UserLoginDetails.xlsx","Sheet1",valueToWrite);
+        System.out.println(valueToWrite.length);
 
     }
 
