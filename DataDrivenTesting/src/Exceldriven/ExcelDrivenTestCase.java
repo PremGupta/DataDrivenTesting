@@ -117,7 +117,7 @@ return null;
 //Getter() method
 public static String getCelldata( int rownum,int col) throws IOException
 {
-fis =new FileInputStream("E:\\Mee\\UserLoginDetails.xlsx");
+fis =new FileInputStream("C:\\Users\\Prem\\Downloads\\Study\\Selenium Files\\UserLoginDetails.xlsx");
 wb=new XSSFWorkbook(fis);
 sheet=wb.getSheet("sheet1");
 row=sheet.getRow(1);
@@ -130,7 +130,7 @@ return cell.getStringCellValue();
 public static String setCelldata(String text,int rownum,int col) throws IOException
 
 {
-fis =new FileInputStream("E:\\Mee\\UserLoginDetails.xlsx");
+fis =new FileInputStream("C:\\Users\\Prem\\Downloads\\Study\\Selenium Files\\UserLoginDetails.xlsx");
 wb=new XSSFWorkbook(fis);
 sheet=wb.getSheet("sheet1");
 row=sheet.getRow(1);

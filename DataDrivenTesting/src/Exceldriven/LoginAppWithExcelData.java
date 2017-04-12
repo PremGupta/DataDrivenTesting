@@ -13,7 +13,8 @@ package Exceldriven;
 	import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.chrome.ChromeDriver;
 	import org.openqa.selenium.firefox.FirefoxDriver;
-	import org.testng.annotations.DataProvider;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.DataProvider;
 	import org.testng.annotations.Test;
 
 	
@@ -28,6 +29,7 @@ package Exceldriven;
 	public void doLogin(String username, String password,String browser) { //no. of parameter = no. of columns
 
 	if(browser.equals("firefox")){
+	System.setProperty("webdriver.gecko.driver", "C:\\Users\\Prem\\Downloads\\Study\\Selenium Files\\geckodriver.exe");
 	driver = new FirefoxDriver();
 
 	} 
@@ -35,9 +37,14 @@ package Exceldriven;
 	else if(browser.equals("chrome"))
 
 	{
-	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Anupam\\Downloads\\Software\\chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Prem\\Downloads\\Study\\Selenium Files\\Zip Files\\chromedriver_win32\\chromedriver.exe");
 	driver=new ChromeDriver();
 
+	}
+	
+	else {
+		System.setProperty("webdriver.ie.driver", "C:\\Users\\Prem\\Downloads\\Study\\Selenium Files\\Zip Files\\IEDriverServer.exe");
+		driver=new InternetExplorerDriver();
 	}
 
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -54,7 +61,7 @@ package Exceldriven;
 	@DataProvider // supplying data for a test method.
 	public Object[][] getData() throws IOException {
 
-	FileInputStream fis = new FileInputStream("E:\\Mee\\UserLoginDetails.xlsx"); // Your .xlsx file name along with path
+	FileInputStream fis = new FileInputStream("C:\\Users\\Prem\\Downloads\\Study\\Selenium Files\\UserLoginDetails.xlsx"); // Your .xlsx file name along with path
 	excelWorkbook = new XSSFWorkbook(fis);
 	// Read sheet inside the workbook by its name
 	excelSheet = excelWorkbook.getSheet("Sheet1"); //Your sheet name
@@ -71,7 +78,8 @@ package Exceldriven;
 	{
 	   for (int cNum = 0; cNum < colCount; cNum++) 
 	   {
-	System.out.print(getCellData("Sheet1", cNum, rNum) + " "); // Your sheet name
+		   System.out.println("*****************************");
+	System.out.print(getCellData("Sheet1",cNum, rNum) + " "); // Your sheet name
 	data[rNum - 2][cNum] = getCellData("Sheet1", cNum, rNum); //Your sheet name
 	   }
 	System.out.println();
@@ -127,5 +135,35 @@ package Exceldriven;
 	}
 
 	}
+	
+/* public void writereport(int a, int b, String text) {
+    try {
+        File excelFile = new File("D:\\DEMO.xls");
+
+        WritableWorkbook book;
+        WritableSheet sheet;
+        Workbook existingBook = null;
+
+        if (!excelFile.exists()) {
+            book = Workbook.createWorkbook(excelFile);
+            sheet = book.createSheet("TESTRESULTS", 0);
+        } else {
+            existingBook = Workbook.getWorkbook(excelFile);
+            book = Workbook.createWorkbook(excelFile, existingBook);
+            sheet = book.getSheet("TESTRESULTS");
+        }
+
+        Label i = new Label(a, b, text);
+        sheet.addCell(i);
+        book.write();
+        book.close();
+
+        if (existingBook != null)
+            existingBook.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+*/
 
 	}
